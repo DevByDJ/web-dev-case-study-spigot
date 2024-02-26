@@ -31,7 +31,7 @@
     <input type="search" name="q" class="w-full py-4 text-sm text-white bg-gray-900 rounded-full pl-10 focus:outline-none focus:bg-white focus:text-gray-900" placeholder="Search..." on:keydown={handleKeyPress} bind:value={searchQuery} autocomplete="off">
   </div>
   <span class="mt-7">
-    <button class="btn mr-4">
+    <button on:click={navigateToSearch} class="btn mr-4">
       Froogle Search
     </button>
     <button class="btn">
