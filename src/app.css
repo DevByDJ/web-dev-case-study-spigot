@@ -77,6 +77,12 @@
   }
 }
 
+h1 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+}
+
+
 .settingsButton:after {
   content: '\2807';
   font-size: 10px;

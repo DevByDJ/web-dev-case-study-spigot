@@ -3,10 +3,17 @@
   import Result from "../components/Result.svelte";
   import VideoResult from "../components/VideoResult.svelte";
 
-  export let data;
+  export let data:any;
 
-  let results = data.props.data.webPages.value.slice(0, 10);
-  let videoResults = data.props.data.videos.value.slice(0, 10);
+  console.log('Received Data: ', data)
+
+  let results: any;
+  let videoResults: any;
+
+  $: if (data && data.props && data.props.data) {
+    results = data.props.data.webPages.value.slice(0, 10);
+    videoResults = data.props.data.videos.value.slice(0, 10);
+  }
 
 </script>
 
@@ -22,7 +29,7 @@
     </div>
 
     <div class="mt-8">
-      {#each results as result (result.id)}
+      {#each results as result, index (result.id || index)}
         <Result 
           webPageUrl={result?.url} 
           webPageTitle={result?.name} 
@@ -49,7 +56,7 @@
     </div>
 
     <div class="mt-8">
-      {#each videoResults as videoResult (videoResult.id)}
+      {#each videoResults as videoResult, index (videoResult.id || index)}
         <VideoResult 
           thumbnailUrl={videoResult?.thumbnailUrl}
           webPageUrl={videoResult?.contentUrl} 
