@@ -1,4 +1,4 @@
-/** @type {import('./$types').PageLoad} */
+/** @type {import('./$types').PageServerLoad} */
 export async function load({ fetch, url }) {
   // Extract 'q' query parameter from the URL
   const searchQuery = url.searchParams.get('q');
@@ -13,7 +13,7 @@ export async function load({ fetch, url }) {
   // Make the API request
   const res = await fetch(apiUrl, {
     headers: {
-      'Ocp-Apim-Subscription-Key': '0760f20a58f340a4ba3ce10857c43142'
+      'Ocp-Apim-Subscription-Key': import.meta.env.VITE_API_KEY
     }
   });
   
@@ -25,3 +25,4 @@ export async function load({ fetch, url }) {
     return { props: { data: null } };
   }
 }
+
