@@ -5,6 +5,8 @@
 
   export let data:any;
 
+  console.log('Received Data: ', data)
+
   let results: any;
   let videoResults: any;
 
