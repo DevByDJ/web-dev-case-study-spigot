@@ -23,47 +23,55 @@
 <div role="tablist" class="ml-10 tabs tabs-bordered">
   <input type="radio" name="my_tabs_1" role="tab" class="tab" aria-label="All" checked />
   <div role="tabpanel" class="tab-content">
-    <div class="mt-4" style="font-size: 12px;">
-      About {data.props.data.webPages.totalEstimatedMatches} results
-    </div>
+    {#if data.props.data.webPages.totalEstimatedMatches === 0}
+      <p>No Results Found</p>
+    {:else}
+      <div class="mt-4" style="font-size: 12px;">
+        About {data.props.data.webPages.totalEstimatedMatches} results
+      </div>
+    {/if}
 
     <div class="mt-4">
       <b style="font-size: 32px;">{data.props.data.queryContext.originalQuery}</b>
     </div>
 
     <div class="mt-8">
-      {#each results as result, index (result.id || index)}
-        <Result 
-          webPageUrl={result?.url} 
-          webPageTitle={result?.name} 
-          webPageDescription={result?.snippet}
-        />
-      {/each}
+      {#if results.length === 0}
+        <p>No Results Found</p>
+      {:else}
+        {#each results as result, index (result.id || index)}
+          <Result 
+            webPageUrl={result?.url} 
+            webPageTitle={result?.name} 
+            webPageDescription={result?.snippet}
+          />
+        {/each}
+      {/if}
     </div>
   </div>
 
   <input type="radio" name="my_tabs_1" role="tab" class="tab" aria-label="Images" />
   <div role="tabpanel" class="tab-content p-10">
-    <div class="mt-4" style="font-size: 12px;">
-      About {data.props.data.webPages.totalEstimatedMatches} results
-    </div>
 
     <div class="mt-4">
       <b style="font-size: 32px;">{data.props.data.queryContext.originalQuery}</b>
     </div>
 
     <div class="mt-8 image-gallery">
-      {#each imageResults as imageResult, index (imageResult.id || index)}
-        <div class="col-span-1 mb-4 mr-2">
-          <ImageResult 
-            thumbnailUrl={imageResult?.thumbnailUrl}
-            webPageUrl={imageResult?.contentUrl} 
-            webPageTitle={imageResult?.name} 
-          />
-        </div>
-      {/each}
+      {#if imageResults.length === 0}
+        <p>No Results Found</p>
+      {:else}
+        {#each imageResults as imageResult, index (imageResult.id || index)}
+          <div class="col-span-1 mb-4 mr-2">
+            <ImageResult 
+              thumbnailUrl={imageResult?.thumbnailUrl}
+              webPageUrl={imageResult?.contentUrl} 
+              webPageTitle={imageResult?.name} 
+            />
+          </div>
+        {/each}
+      {/if}
     </div>
-    
   </div>
 
   <input type="radio" name="my_tabs_1" role="tab" class="tab" aria-label="News" />
@@ -71,23 +79,24 @@
 
   <input type="radio" name="my_tabs_1" role="tab" class="tab" aria-label="Videos" />
   <div role="tabpanel" class="tab-content">
-    <div class="mt-4" style="font-size: 12px;">
-      About {data.props.data.webPages.totalEstimatedMatches} results
-    </div>
 
     <div class="mt-4">
       <b style="font-size: 32px;">{data.props.data.queryContext.originalQuery}</b>
     </div>
 
     <div class="mt-8">
-      {#each videoResults as videoResult, index (videoResult.id || index)}
-        <VideoResult 
-          thumbnailUrl={videoResult?.thumbnailUrl}
-          webPageUrl={videoResult?.contentUrl} 
-          webPageTitle={videoResult?.name} 
-          webPageDescription={videoResult?.description}
-        />
-      {/each}
+      {#if videoResults.length === 0}
+        <p>No Results Found</p>
+      {:else}
+        {#each videoResults as videoResult, index (videoResult.id || index)}
+          <VideoResult 
+            thumbnailUrl={videoResult?.thumbnailUrl}
+            webPageUrl={videoResult?.contentUrl} 
+            webPageTitle={videoResult?.name} 
+            webPageDescription={videoResult?.description}
+          />
+        {/each}
+      {/if}
     </div>
   </div>
 </div>
