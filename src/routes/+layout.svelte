@@ -16,7 +16,7 @@
 
 </script>
 
-<div class="relative flex flex-col max-w-[1400px] mx-auto w-full text-sm sm:text-nase min-h-screen">
+<div class="relative flex flex-col max-w-[2440px] mx-auto w-full text-sm sm:text-nase min-h-screen">
   {#if !isMainPage}
     <Header y={y}/>
   {/if}
