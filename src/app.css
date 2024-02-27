@@ -109,14 +109,14 @@ h1 {
 }
 
 /* Landscape phones to tablets */
-@media (max-width: 768px) {
+@media (max-width: 850px) {
   .image-gallery {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
 /* Portrait phones */
-@media (max-width: 475px) {
+@media (max-width: 675px) {
   .image-gallery {
     grid-template-columns: repeat(2, 1fr);
   }

@@ -1,8 +1,9 @@
 <script lang="ts">
-  import * as Tabs from "$lib/components/ui/tabs";
+
   import Result from "../components/Result.svelte";
   import VideoResult from "../components/VideoResult.svelte";
   import ImageResult from "../components/ImageResult.svelte";
+  import NewsResult from "./NewsResult.svelte";
 
   export let data:any;
 
@@ -11,11 +12,13 @@
   let results: any = [];
   let videoResults: any = [];
   let imageResults: any = [];
+  let newsResults: any = [];
 
   $: if (data?.props?.data) {
     results = data.props.data.webPages?.value?.slice(0, 10) ?? [];
     videoResults = data.props.data.videos?.value?.slice(0, 10) ?? [];
     imageResults = data.props.data.images?.value?.slice(0, 24) ?? [];
+    newsResults = data.props.data.news?.value?.slice(0, 10) ?? [];
   }
 
 </script>
@@ -51,11 +54,7 @@
   </div>
 
   <input type="radio" name="my_tabs_1" role="tab" class="tab" aria-label="Images" />
-  <div role="tabpanel" class="tab-content p-10">
-
-    <div class="mt-4">
-      <b style="font-size: 32px;">{data.props.data.queryContext.originalQuery}</b>
-    </div>
+  <div role="tabpanel" class="tab-content">
 
     <div class="mt-8 image-gallery">
       {#if imageResults.length === 0}
@@ -77,12 +76,18 @@
   <input type="radio" name="my_tabs_1" role="tab" class="tab" aria-label="News" />
   <div role="tabpanel" class="tab-content p-10">Tab content 3</div>
 
+  <div class="mt-8">
+    {#if newsResults.length === 0}
+      <p>No Results Found</p>
+    {:else}
+      {#each newsResults as newResult, index (newResult.id || index)}
+        
+      {/each}
+    {/if}
+  </div>
+
   <input type="radio" name="my_tabs_1" role="tab" class="tab" aria-label="Videos" />
   <div role="tabpanel" class="tab-content">
-
-    <div class="mt-4">
-      <b style="font-size: 32px;">{data.props.data.queryContext.originalQuery}</b>
-    </div>
 
     <div class="mt-8">
       {#if videoResults.length === 0}
