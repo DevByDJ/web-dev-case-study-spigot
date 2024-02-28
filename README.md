@@ -1,4 +1,4 @@
-## Get Started
+## Getting Started
 
 Once you've downloaded the project and installed dependencies with `npm install` (or `pnpm install` or `yarn`),
 
