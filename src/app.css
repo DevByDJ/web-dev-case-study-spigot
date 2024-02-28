@@ -67,6 +67,35 @@
     --ring: hsl(212.7,26.8%,83.9);
   }
 }
+
+:root {
+  --font-size-base: 1rem; /* 16px */
+  --font-size-lg: 1.25rem; /* 20px */
+  --font-size-md: 1rem; /* 16px */
+  --font-size-sm: 0.875rem; /* 14px */
+  --font-size-xs: 0.75rem; /* 12px */
+}
+
+@media (min-width: 768px) {
+  :root {
+      --font-size-base: 1.125rem; /* 18px */
+      --font-size-lg: 1.5rem; /* 24px */
+      --font-size-md: 1.125rem; /* 18px */
+      --font-size-sm: 1rem; /* 16px */
+      --font-size-xs: 0.875rem; /* 14px */
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+      --font-size-base: 1.25rem; /* 20px */
+      --font-size-lg: 1.65rem; /* 28px */
+      --font-size-md: 1.25rem; /* 20px */
+      --font-size-sm: 1.125rem; /* 18px */
+      --font-size-xs: 1rem; /* 16px */
+  }
+}
+
  
 @layer base {
   * {
@@ -87,11 +116,16 @@ h1 {
   font-size: 10px;
   }
 
-  /* Base grid layout for larger screens */
 .image-gallery {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 4px;
+  display: flex;
+  flex-wrap: wrap; 
+  gap: 10px; 
+  align-items: flex-start;
+}
+.image-container {
+  flex: 1; /* Allows each image container to grow */
+  min-width: calc(33.333% - 10px); /* Adjust based on desired width, accounting for gap */
+  max-width: calc(33.333% - 10px); /* Ensures images do not grow beyond a third of the container width */
 }
 
 /* Tablets (or small desktops) */
@@ -109,14 +143,14 @@ h1 {
 }
 
 /* Landscape phones to tablets */
-@media (max-width: 768px) {
+@media (max-width: 850px) {
   .image-gallery {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
 /* Portrait phones */
-@media (max-width: 475px) {
+@media (max-width: 675px) {
   .image-gallery {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -139,14 +173,14 @@ h1 {
 
 .search-container {
   flex-grow: 1;
-  margin-left: 5rem; /* Space between logo and search */
-  margin-right: 0.5rem; /* Space between search and sign-in button */
+  margin-left: 5rem; 
+  margin-right: 0.5rem;
   position: relative;
 }
 
 .search-input {
-  width: calc(100% - 2.5rem); /* Adjust width to accommodate internal button */
-  padding-left: 2.5rem; /* Space for the search icon */
+  width: calc(100% - 2.5rem);
+  padding-left: 2.5rem;
 }
 
 @media (max-width: 768px) {
@@ -178,6 +212,98 @@ h1 {
   .search-input {
     width: calc(100% - 2rem);
     padding-left: 2rem;
+  }
+  
+}
+
+.result-container {
+  font-family: 'Poppins', sans-serif;
+}
+
+.video-result-container {
+  font-family: 'Poppins', sans-serif;
+}
+
+.title {
+  font-size: 20px; 
+  font-weight: regular;
+}
+
+.description {
+  font-size: 18px; /* Smaller than title but readable */
+  word-wrap: break-word; /* Break the word at the end of the line */
+}
+
+/* Adjust the font size when the screen width is 600px or less */
+@media screen and (max-width: 600px) {
+  .description {
+    font-size: 16px;
+  }
+}
+
+/* Adjust the font size when the screen width is 400px or less */
+@media screen and (max-width: 400px) {
+  .description {
+    font-size: 14px;
+  }
+}
+
+.link {
+  font-size: 12px; /* Smallest text for subtlety */
+  color: #10B981; /* Tailwind's green-500 for visual distinction */
+}
+
+/* Adjust the font size when the screen width is 600px or less */
+@media screen and (max-width: 600px) {
+  .link {
+    font-size: 11px;
+  }
+}
+
+/* Adjust the font size when the screen width is 400px or less */
+@media screen and (max-width: 400px) {
+  .link {
+    font-size: 10px;
+  }
+}
+
+/* Hide the description when the screen width is 475px or less */
+@media screen and (max-width: 750px) {
+  .description {
+    display: none;
+  }
+  .link {
+    display: none;
+  }
+  .video-result-container {
+    padding-top: -30px; /* Adjust as needed */
+    padding-bottom: -30px; /* Adjust as needed */
+  }
+}
+
+
+/* Example media query if you decide to change the image's behavior under 475px */
+@media screen and (max-width: 750px) {
+  .avatar img {
+    width: 100%; /* Make the image responsive */
+    max-width: 100%; /* Ensure the image does not exceed its original size */
+    height: auto; /* Maintain aspect ratio */
+  }
+}
+
+/* Video Cards */
+.desktop-view {
+  display: block;
+}
+.mobile-view {
+  display: none;
+}
+@media screen and (max-width: 750px) {
+  .desktop-view {
+    display: none;
+  }
+  .mobile-view {
+    display: block;
   }
 }
 
