@@ -21,7 +21,7 @@
     <a href={webPageUrl} target="_blank" class="title text-blue-500 underline">{webPageTitle}</a>
     <div class="mt-2 flex">
       <div class="avatar mr-4">
-        <div class="w-auto h-auto">
+        <div class="shadow-xl w-auto h-auto">
           <img 
             src={thumbnailUrl} 
             alt=""
