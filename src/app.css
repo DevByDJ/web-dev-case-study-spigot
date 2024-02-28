@@ -74,6 +74,7 @@
   --font-size-md: 1rem; /* 16px */
   --font-size-sm: 0.875rem; /* 14px */
   --font-size-xs: 0.75rem; /* 12px */
+  --text-color: #000; /* Black text by default */
 }
 
 @media (min-width: 768px) {
@@ -96,19 +97,13 @@
   }
 }
 
- 
-@layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
-}
-
 h1 {
   font-family: 'Poppins', sans-serif;
   font-weight: 600;
+}
+
+.dark-theme {
+  --text-color: #fff; /* White text for dark theme */
 }
 
 .settingsButton:after {
@@ -305,6 +300,26 @@ h1 {
   .mobile-view {
     display: block;
   }
+}
+
+.card {
+  /* Set the card to take the full width of its parent up to a max width */
+  width: 100%; /* Use 100% of its container's width */
+  max-width: 90%; /* Limit the card width to align with your design */
+  margin: auto; /* Center the card if it's smaller than the container */
+  margin-bottom: 2rem;
+}
+
+.card figure img {
+  /* Ensure the image scales within the figure */
+  width: 100%; /* Make the image responsive within the figure element */
+  height: auto; /* Maintain the aspect ratio */
+  object-fit: cover; /* Cover the figure area without losing aspect ratio */
+}
+
+/* Adjustments for smaller screens can be handled by media queries if necessary */
+@media (max-width: 750px) {
+  /* Example: Adjust the card or image styles for very small screens */
 }
 
 

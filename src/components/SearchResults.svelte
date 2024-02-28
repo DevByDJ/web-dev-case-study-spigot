@@ -119,7 +119,7 @@
             datePublished={newsResult?.datePublished}
             providerName={newsResult?.provider[0]?.name}
             providerImage={newsResult?.provider[0]?.image?.thumbnail?.contentUrl}
-            thumbnailUrl={newsResult?.image.contentUrl}
+            thumbnailUrl={newsResult?.image?.contentUrl}
             webPageUrl={newsResult?.url} 
             webPageTitle={newsResult?.name} 
             webPageDescription={newsResult?.description}
