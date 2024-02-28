@@ -5,7 +5,7 @@
 
 </script>
 
-<div class="flex flex-col items-center">
+<div class="flex flex-col items-center mr-4">
   <a href={webPageUrl} target="_blank" class="block">
     <img class="w-48 h-48 rounded-xl object-cover" src={thumbnailUrl} alt={webPageTitle} />
   </a>

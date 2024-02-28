@@ -20,8 +20,21 @@
     imageResults = data.props.data.images?.value?.slice(0, 24) ?? [];
     newsResults = data.props.data.news?.value?.slice(0, 10) ?? [];
   }
-
 </script>
+
+<style>
+  .image-gallery {
+    display: flex; /* Use flexbox to layout image results */
+    flex-wrap: wrap; /* Allow items to wrap to next line if necessary */
+    gap: 10px; /* Adjust based on desired spacing between images */
+    align-items: flex-start; /* Align items to the start of the flex container */
+  }
+  .image-container {
+    flex: 1; /* Allows each image container to grow */
+    min-width: calc(33.333% - 10px); /* Adjust based on desired width, accounting for gap */
+    max-width: calc(33.333% - 10px); /* Ensures images do not grow beyond a third of the container width */
+  }
+</style>
 
 <div role="tablist" class="ml-10 tabs tabs-bordered">
   <input type="radio" name="my_tabs_1" role="tab" class="tab" aria-label="All" checked />
@@ -42,7 +55,28 @@
       {#if results.length === 0}
         <p>No Results Found</p>
       {:else}
-        {#each results as result, index (result.id || index)}
+        {#each results.slice(0, 3) as result, index (result.id || index)}
+          <Result 
+            webPageUrl={result?.url} 
+            webPageTitle={result?.name} 
+            webPageDescription={result?.snippet}
+          />
+        {/each}
+        {#if imageResults.length}
+          <div class="mt-8">
+            <h2 class="text-2xl">Images</h2>
+            <div class="image-gallery mt-4 mb-4">
+              {#each imageResults.slice(0, 3) as imageResult, index (imageResult.id || index)}
+                <ImageResult 
+                  thumbnailUrl={imageResult?.thumbnailUrl}
+                  webPageUrl={imageResult?.contentUrl} 
+                  webPageTitle={imageResult?.name} 
+                />
+              {/each}
+            </div>
+          </div>
+        {/if}
+        {#each results.slice(3) as result, index (result.id || index)}
           <Result 
             webPageUrl={result?.url} 
             webPageTitle={result?.name} 
@@ -74,17 +108,27 @@
   </div>
 
   <input type="radio" name="my_tabs_1" role="tab" class="tab" aria-label="News" />
-  <div role="tabpanel" class="tab-content p-10">Tab content 3</div>
+  <div role="tabpanel" class="tab-content">
 
   <div class="mt-8">
-    {#if newsResults.length === 0}
-      <p>No Results Found</p>
-    {:else}
-      {#each newsResults as newResult, index (newResult.id || index)}
-        
-      {/each}
-    {/if}
+      {#if newsResults.length === 0}
+        <p>No Results Found</p>
+      {:else}
+        {#each newsResults as newsResult, index (newsResult.id || index)}
+          <NewsResult
+            datePublished={newsResult?.datePublished}
+            providerName={newsResult?.provider[0]?.name}
+            providerImage={newsResult?.provider[0]?.image?.thumbnail?.contentUrl}
+            thumbnailUrl={newsResult?.image.contentUrl}
+            webPageUrl={newsResult?.url} 
+            webPageTitle={newsResult?.name} 
+            webPageDescription={newsResult?.description}
+          />
+        {/each}
+      {/if}
+    </div>
   </div>
+
 
   <input type="radio" name="my_tabs_1" role="tab" class="tab" aria-label="Videos" />
   <div role="tabpanel" class="tab-content">
