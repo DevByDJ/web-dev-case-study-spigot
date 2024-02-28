@@ -9,19 +9,23 @@
     export let webPageTitle: string;
     export let webPageDescription: string;
 
-    let windowWidth: number;
+    let windowWidth: number = 0;
 
     function updateWidth() {
         windowWidth = window.innerWidth;
     }
 
     onMount(() => {
-        window.addEventListener('resize', updateWidth);
-        updateWidth(); // Initialize width on mount
+        if (typeof window !== "undefined") { // Check if window is defined
+            window.addEventListener('resize', updateWidth);
+            updateWidth(); // Initialize width on mount
+        }
     });
 
     onDestroy(() => {
-        window.removeEventListener('resize', updateWidth);
+        if (typeof window !== "undefined") {
+            window.removeEventListener('resize', updateWidth);
+        }
     });
 
     function formatDate(date: Date) {

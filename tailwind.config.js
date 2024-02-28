@@ -11,7 +11,19 @@ const config = {
 			padding: "2rem",
 			screens: {
 				"2xl": "1400px"
-			}
+			},
+			lightTheme: {          
+				"primary": "#e7e5e4",								 
+				"secondary": "#8b5cf6",								 
+				"accent": "#8b5cf6",								 
+				"neutral": "#e7e5e4",								 
+				"base-100": "#f3f4f6",								 
+				"info": "#ddd6fe",								 
+				"success": "#bbf7d0",								 
+				"warning": "#fde68a",		 
+				"error": "#f87171",
+			},
+
 		},
 		extend: {
 			colors: {

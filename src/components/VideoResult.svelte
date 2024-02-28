@@ -15,10 +15,6 @@
   });
 </script>
 
-<style>
-
-</style>
-
 <div>
   <!-- Desktop View -->
   <div class="mt-6 video-result-container desktop-view">
@@ -40,19 +36,15 @@
   </div>
 
   <!-- Mobile View (DaisyUI Card Component) -->
-  <div class="card mr-6 mb-6 w-auto bg-base-100 shadow-xl mobile-view">
+  <div class="card bg-base-100 shadow-xl mobile-view color: var(--text-color);">
     <figure>
-      <img 
-        src={thumbnailUrl} 
-        alt={webPageTitle}
-        class="w-full h-auto object-cover" 
-      />
+      <img src="{thumbnailUrl}" alt={webPageTitle} />
     </figure>
     <div class="card-body">
       <h2 class="card-title">{webPageTitle}</h2>
       <p>{webPageDescription}</p>
       <div class="card-actions justify-end">
-        <a href={webPageUrl} target="_blank" class="btn btn-primary">Watch Video</a>
+        <a href="{webPageUrl}" target="_blank" class="btn btn-primary">Watch Video</a>
       </div>
     </div>
   </div>
